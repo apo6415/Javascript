@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <title> Advanced JavaScript Project: extend() </title>
+  <meta charset="utf-8">
+  <script>
+    function extend(obj1, obj2) {
+        // own code to extend 2 objects ======= >>>>>>
+        for (var prop in obj2) {
+        	if (obj1[prop] == undefined) {
+        		obj1[prop] = obj2[prop];
+        	}
+        }
+    }
+
+    var bird1 = {
+        name     : "robin",
+        songbird : true,
+        flies    : undefined
+    };
+
+    var bird2 = {
+        name     : "ostrich",
+        songbird : false,
+        flies    : false
+    }; 
+
+    var bird = {
+        phylum    : "chordata",
+        class     : "aves",
+        feathered : true,
+        flies     : true
+    };
+
+    console.log("------ Extend with birds ------ ");
+    extend(bird1, bird);
+    console.log(bird1);
+
+    extend(bird2, bird);
+    console.log(bird2);
+  </script>
+</head>
+<body>
+</body>
+</html>
