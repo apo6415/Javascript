@@ -16,6 +16,20 @@ class BST {
     
   }
 
+  deleteMinNode() {
+    this.root = this.deleteMin(this.root);
+  }
+  
+  #deleteMin(node) {
+    if (node.left === null) {
+      return node.right;
+    }
+
+    node.left = deleteMin(node.left);
+
+    return node;
+  }
+
   insertNode(node, k, v) {
     if (node === null) {
       return new Node(k, v);
