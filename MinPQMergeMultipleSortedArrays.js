@@ -5,6 +5,10 @@ class minPQ {
         this.arr[0] = null;
     }
     
+    isEmpty() {
+        return this.N === 0;
+    }
+    
     swap (arr, index1, index2) {
         const current = arr[index1];
         console.log('swapping', index1, index2)
@@ -17,16 +21,17 @@ class minPQ {
         let min = this.arr[1];
         let lastItem = this.arr.pop();
         this.N--;
-        this.arr[1] = lastItem;
-        this.pullDown(1);
-        
+        if (this.N > 0) {
+            this.arr[1] = lastItem;
+            this.pullDown(1);
+        }
         return min;
     }
     
     insert(key) {
         let k = ++this.N;
         this.arr[k] = key;
-        console.log('Inserting -- ', key, k, this.N)
+        console.log('Inserting -- ', key, this.arr, k)
         this.swimUp(k);
     }
     
@@ -45,6 +50,8 @@ class minPQ {
             this.swap(this.arr, k, j);
             k = j;
         }
+        
+        console.log('pulldoqnComplete', this.arr)
     }
     
     swimUp(k) {
@@ -85,8 +92,19 @@ while (c1 < arr1.length || c2 < arr2.length || c3 < arr3.length) {
         c3++;
     }
     
-    const lowest = pq.delMin();
-    output.push(lowest);
+    while (!pq.isEmpty()) {
+      const lowest = pq.delMin();
+      output.push(lowest);    
+    }
+    
 }
 
 console.log(pq.arr, output)
+
+// Expected:
+/**
+[ null ] [
+  0, 0, 3,  5,
+  6, 6, 7, 28
+]
+*/
